@@ -80,7 +80,7 @@ foldersRouter
         })
         .catch(next)
     })
-    .patch((req, res, next) => {
+    .patch(jsonParser,(req, res, next) => {
         const { name } = req.body
         const updatedFolder = { name }
 
