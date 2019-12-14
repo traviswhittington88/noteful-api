@@ -6,13 +6,13 @@ const NotesService = require('./notes-service')
 const notesRouter = express.Router()
 const jsonParser = express.json()
 
-/*const serializeNotes = notes => ({
+const serializeNotes = notes => ({
     id: notes.id,
     name: xss(notes.name),
     modified: notes.modified,
     folderId: notes.folderId,
     content: xss(notes.content),
-}) */
+}) 
 
 notesRouter
     .route('/')
