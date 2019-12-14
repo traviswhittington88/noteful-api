@@ -7,9 +7,8 @@ const NotesService = {
     },
     insertNote(knex, newNoteFields) {
         console.log('newNoteFields in service!',newNoteFields)
-        return knex
-            .insert({newNoteFields})
-            .into('noteful_notes')
+        return knex('noteful_notes')
+            .insert(newNoteFields)
             .returning('*')
             .then(rows => {
                 console.log('Row', rows[0])
