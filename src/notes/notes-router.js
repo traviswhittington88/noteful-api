@@ -7,10 +7,8 @@ const notesRouter = express.Router()
 const jsonParser = express.json()
 
 const serializeNotes = notes => ({
-    id: notes.id,
+    ...notes,
     name: xss(notes.name),
-    modified: notes.modified,
-    folderId: notes.folderId,
     content: xss(notes.content),
 }) 
 
@@ -20,7 +18,7 @@ notesRouter
         console.log('GET /api/notes called')
         NotesService.getAllNotes(req.app.get('db'))
         .then(notes => {
-            res.json({notes})
+            res.json(notes.map(serializeNotes))
         })
         .catch(next)
     })
@@ -45,7 +43,7 @@ notesRouter
         .then(note => {
             res.status(201)
                 .location(path.posix.join(req.originalUrl, `/${note.id}`))
-                    .json({ note })
+                    .json(serializeNotes(note))
         })
         .catch(next)
     })
