@@ -5,9 +5,9 @@ const NotesService = {
     getById(knex, id) {
         return knex.select('*').from('noteful_notes').where({ id }).first()
     },
-    insertNote(knex, newNote) {
+    insertNote(knex, newNoteFields) {
         return knex
-            .insert(newNote)
+            .insert(newNoteFields)
             .into('noteful_notes')
             .returning('*')
             .then(rows => {
