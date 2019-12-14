@@ -8,8 +8,8 @@ const NotesService = {
     insertNote(knex, newNoteFields) {
         console.log('newNoteFields in service!',newNoteFields)
         return knex
-            .db.raw(`INSERT INTO noteful_notes (folderId, name, content) 
-                    VALUES(${newNoteFields.folderId}, ${newNoteFields.name}, ${newNoteFields.content})`)
+            .insert(newNoteFields)
+            .into('noteful_notes')
             .returning('*')
             .then(rows => {
                 console.log('Row', rows[0])
