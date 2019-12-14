@@ -25,7 +25,7 @@ notesRouter
     .post(jsonParser,(req, res, next) => {
         const { name, folderId, content } = req.body
         const newNote = { name, folderId, content }
-
+        console.log('newNote', newNote)
         for (const [key, value] of Object.entries(newNote)) {
             if (value == null) {
                 res.status(400).json({
@@ -41,9 +41,8 @@ notesRouter
             newNote
         )
         .then(note => {
-            console.log('NOTE NOTE NOTE',note)
             res.status(201)
-                .location(path.posix.join(req.originalUrl + `/${note.id}`))
+                .location(path.posix.join(req.originalUrl, `/${note.id}`))
                     .json(serializeNotes(note))
         })
         .catch(next)
