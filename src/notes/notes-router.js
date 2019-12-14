@@ -41,7 +41,7 @@ notesRouter
             newNote
         )
         .then(note => {
-            console.log(note)
+            console.log('NOTE NOTE NOTE',note)
             res.status(201)
                 .location(path.posix.join(req.originalUrl + `/${note.id}`))
                     .json(serializeNotes(note))
