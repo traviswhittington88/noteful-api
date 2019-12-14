@@ -6,6 +6,7 @@ const NotesService = {
         return knex.select('*').from('noteful_notes').where({ id }).first()
     },
     insertNote(knex, newNoteFields) {
+        console.log('newNoteFields in service!',newNoteFields)
         return knex
             .insert(newNoteFields)
             .into('noteful_notes')
