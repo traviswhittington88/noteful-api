@@ -70,7 +70,7 @@ notesRouter
         .catch(next)
     })
     .get((req, res, next) => {
-        serializeNotes(res.note)
+        res.json(serializeNotes(res.note))
     })
     .delete((req, res, next) => {
         NotesService.deleteNote(
